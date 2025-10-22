@@ -61,11 +61,11 @@ Excel (.xlsx, .xls)
 PowerPoint (.pptx, .ppt)
 
 Notes:
-- Ensure the index.html file is in the same folder as app.py or inside a "templates" folder.
 - For PowerPoint support, install python-pptx:
   ```bash
    pip install python-pptx
   ```
+
 
 
 
