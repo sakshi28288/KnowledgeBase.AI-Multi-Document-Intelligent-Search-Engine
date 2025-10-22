@@ -1,4 +1,4 @@
-echo "# KnowledgeBase.AI – Multi-Document Intelligent Search Engine
+"# KnowledgeBase.AI – Multi-Document Intelligent Search Engine
 
 A Flask-based intelligent search engine that uses Retrieval-Augmented Generation (RAG) and Google Gemini LLM to provide synthesized answers from uploaded documents.
 
@@ -57,10 +57,4 @@ KnowledgeBase-AI/
 
 ---
 
-## 📽️ Demo
-(Add your demo video or GIF link here)
 
----
-
-## 📜 License
-Open source under MIT License." > README.md
