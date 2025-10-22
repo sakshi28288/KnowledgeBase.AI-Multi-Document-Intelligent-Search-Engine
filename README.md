@@ -4,7 +4,7 @@ Knowledge-Base Search Engine is a Flask-based application that allows users to u
 
 ---
 
-## 📸 Features
+# 📸 Features
 
 - Upload multiple document types: PDF, CSV, Excel, PowerPoint  
 - AI-powered question answering using Google Gemini API  
@@ -13,7 +13,7 @@ Knowledge-Base Search Engine is a Flask-based application that allows users to u
 
 ---
 
-## 🛠️ Requirements
+# 🛠️ Requirements
 
 - Python 3.10 or higher  
 - Gemini API Key from Google  
@@ -70,4 +70,5 @@ Notes:
   ```bash
    pip install python-pptx
   ```
+
 
