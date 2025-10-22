@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge-base Search Engine</title>
+<style>
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+/* Body & Container */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f6fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    transition: background 0.3s;
+}
+body.dark { background: #1e1e2f; color: #fff; }
+
+.container {
+    max-width: 720px;
+    width: 100%;
+    padding: 40px;
+    margin-top: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    animation: fadeIn 0.8s ease-in-out;
+    transition: background 0.3s, color 0.3s;
+}
+body.dark .container { background: #2b2b3c; color: #eee; }
+
+/* Headings */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2f3640;
+}
+body.dark h2 { color: #f5f5f5; }
+
+/* Inputs */
+input[type="file"], input[type="text"] {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input[type="file"]:hover, input[type="text"]:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76,175,80,0.5);
+    outline: none;
+}
+body.dark input[type="file"], body.dark input[type="text"] { background: #3a3a4d; color: #fff; border: 1px solid #555; }
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+button:hover { background: #45a049; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+
+/* Answer Box */
+#answer {
+    margin-top: 25px;
+    min-height: 80px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f2f2f2;
+    border-left: 5px solid #4CAF50;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    transition: all 0.3s;
+}
+body.dark #answer { background: #3a3a4d; border-left: 5px solid #45a049; color: #fff; }
+
+/* Footer */
+.footer { text-align: center; margin-top: 30px; font-size: 14px; color: #888; }
+body.dark .footer { color: #aaa; }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity:0; transform:translateY(-20px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+/* Dark mode toggle */
+.toggle-dark { position: absolute; top:20px; right:20px; padding:10px 16px; border:none; border-radius:6px; cursor:pointer; background:#444; color:#fff; transition:all 0.3s;}
+.toggle-dark:hover { background:#555; }
+</style>
+</head>
+<body>
+<button class="toggle-dark">Toggle Dark Mode</button>
+<div class="container">
+    <h2>Knowledge-base Search Engine</h2>
+    <form id="ragForm">
+        <input type="file" id="documents" name="document" required>
+        <input type="text" id="query" name="query" placeholder="Enter your question" required>
+        <button type="submit">Ask</button>
+    </form>
+    <div id="answer">Answer will appear here...</div>
+    <div class="footer">Student Version • Professional UI</div>
+</div>
+
+<script>
+const form = document.getElementById("ragForm");
+const answerDiv = document.getElementById("answer");
+const toggleBtn = document.querySelector(".toggle-dark");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const fileInput = document.getElementById("documents");
+    const query = document.getElementById("query").value.trim();
+    const file = fileInput.files[0];
+
+    if (!file || !query) {
+        answerDiv.textContent = "File and query are required!";
+        return;
+    }
+
+    // Client-side file type validation
+    const allowedExtensions = ['.pdf', '.csv', '.xlsx', '.xls', '.pptx', '.ppt'];
+    const fileName = file.name.toLowerCase();
+    const isValidFile = allowedExtensions.some(ext => fileName.endsWith(ext));
+
+    if (!isValidFile) {
+        answerDiv.textContent = "Error: Please upload a PDF, CSV, Excel, or PowerPoint file.";
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("document", file);
+    formData.append("query", query);
+
+    answerDiv.textContent = "Processing...";
+
+    try {
+        // Send request to the Flask backend API
+        const res = await fetch("/api/rag/ask", { method:"POST", body: formData });
+        const data = await res.json();
+
+        if (res.ok) {
+            answerDiv.textContent = data.answer;
+        } else {
+            // Display server-side error message if available
+            answerDiv.textContent = "Error: " + (data.answer || "An unknown error occurred on the server.");
+        }
+    } catch (err) {
+        answerDiv.textContent = "Unexpected connection error. Ensure the Flask server is running: " + err;
+    }
+});
+
+// Toggle dark mode functionality
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+});
+</script>
+</body>
+</html>
