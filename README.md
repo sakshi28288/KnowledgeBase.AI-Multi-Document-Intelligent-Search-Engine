@@ -23,32 +23,39 @@ Knowledge-Base Search Engine is a Flask-based application that allows users to u
 
 ## 🚀 Setup Instructions
 
-```bash
 # 1. Clone or copy the project folder
+```bash
 git clone <your-repo-url>
 cd <project-folder>
-
+```
 # 2. Create and activate a Python virtual environment
 # Windows
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 # Linux/Mac
+```bash
 python3 -m venv venv
 source venv/bin/activate
-
+```
 # 3. Install required packages
+```bash
 pip install -r requirements.txt
-
+```
 # 4. Create a .env file in the project root with your Gemini API key
+```bash
 echo 'GEMINI_API_KEY="your_google_gemini_api_key_here"' > .env
-
+```
 # 5. Run the Flask server
+```bash
 python app.py
-
+```
 # 6. Open your browser
 # http://127.0.0.1:5000
 
 # 7. For PowerPoint support, install python-pptx
+```bash
 pip install python-pptx
 ```
 📂 Supported File Types
@@ -63,3 +70,4 @@ Notes:
   ```bash
    pip install python-pptx
   ```
+
