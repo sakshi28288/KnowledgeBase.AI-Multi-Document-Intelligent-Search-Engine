@@ -1,80 +1,57 @@
 cat <<'EOF' > README.md
-# KnowledgeBase.AI – Multi-Document Intelligent Search Engine
+# Knowledge-Base Search Engine
 
-A Flask-based intelligent search engine that uses Retrieval-Augmented Generation (RAG) and Google Gemini LLM to provide synthesized answers from uploaded documents.
-
----
-
-## 🔍 Features
-- Upload multiple document types: PDF, CSV, Excel, PowerPoint  
-- Extracts text automatically using pdfminer and pandas  
-- Uses Gemini API for context-aware question answering  
-- Clean, responsive frontend with optional Dark Mode  
+**Description:**  
+This is a Flask-based Knowledge-Base Search Engine. Users can upload documents (PDF, CSV, Excel, PowerPoint) and ask questions. Answers are generated using Gemini LLM (Google Generative AI).
 
 ---
 
-## ⚙️ Tech Stack
-- **Backend:** Flask, Python  
-- **Frontend:** HTML, CSS, JavaScript  
-- **AI Model:** Gemini 2.5 Flash (LLM)  
-- **Libraries:** pdfminer, pandas, flask-cors, dotenv, python-pptx  
+## Requirements
+- Python 3.10 or higher
+- Gemini API Key from Google
+- Virtual environment recommended
 
 ---
 
-## 🚀 Run Locally
-1. Clone the repository:
-\`\`\`bash
-git clone https://github.com/<yourusername>/KnowledgeBase-AI.git
-cd KnowledgeBase-AI
-\`\`\`
+## Setup Instructions
 
-2. Create a virtual environment and activate it:
-\`\`\`bash
-python -m venv venv
+**Clone or copy the project folder**
+
+**Create and activate a virtual environment**
+
+```bash
 # Windows
+python -m venv venv
 venv\Scripts\activate
+
 # Linux/Mac
+python3 -m venv venv
 source venv/bin/activate
-\`\`\`
+Install required packages
 
-3. Install dependencies:
-\`\`\`bash
+bash
+Copy code
 pip install -r requirements.txt
-\`\`\`
+Create a .env file in the project root with your Gemini API key
 
-4. Create a `.env` file (copy from `.env.example`) and add your API key:
-\`\`\`bash
-GEMINI_API_KEY=your_api_key_here
-\`\`\`
+bash
+Copy code
+GEMINI_API_KEY="your_google_gemini_api_key_here"
+Run the Flask server
 
-5. Run the Flask app:
-\`\`\`bash
+bash
+Copy code
 python app.py
-\`\`\`
+Open your browser and visit:
 
-6. Open in browser: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+cpp
+Copy code
+http://127.0.0.1:5000
+Supported File Types
+PDF (.pdf)
 
----
+CSV (.csv)
 
-## 📂 Folder Structure
-\`\`\`
-KnowledgeBase-AI/
-├── app.py
-├── templates/
-│   └── index.html
-├── static/       # CSS, JS, images
-├── requirements.txt
-├── .env.example
-├── README.md
-\`\`\`
+Excel (.xlsx, .xls)
 
----
-
-## 📽️ Demo
-(Add your demo video or GIF link here)
-
----
-
-## 📜 License
-Open source under MIT License.
-EOF
+PowerPoint (.pptx, .ppt) — requires python-pptx
