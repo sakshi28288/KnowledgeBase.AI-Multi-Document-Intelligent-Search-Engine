@@ -1,49 +1,66 @@
-Knowledge-Base Search Engine
+echo "# KnowledgeBase.AI – Multi-Document Intelligent Search Engine
 
-Description:
-This is a Flask-based Knowledge-Base Search Engine. Users can upload documents (PDF, CSV, Excel, PowerPoint) and ask questions. Answers are generated using Gemini LLM (Google Generative AI).
+A Flask-based intelligent search engine that uses Retrieval-Augmented Generation (RAG) and Google Gemini LLM to provide synthesized answers from uploaded documents.
 
-Requirements:
-- Python 3.10 or higher
-- Gemini API Key from Google
-- Virtual environment recommended
+---
 
-Setup Instructions:
+## 🔍 Features
+- Upload multiple document types: PDF, CSV, Excel, PowerPoint  
+- Extracts text automatically using pdfminer and pandas  
+- Uses Gemini API for context-aware question answering  
+- Clean, responsive frontend with optional Dark Mode  
 
-1. Clone or copy the project folder.
-2. Create and activate a virtual environment:
+---
 
-   Windows:
-       python -m venv venv
-       venv\Scripts\activate
+## ⚙️ Tech Stack
+- Backend: Flask, Python  
+- Frontend: HTML, CSS, JavaScript  
+- AI Model: Gemini 2.5 Flash (LLM)  
+- Libraries: pdfminer, pandas, flask-cors, dotenv, python-pptx  
+
+---
+
+## 🚀 Run Locally
+1. Clone the repository:
+git clone https://github.com/<yourusername>/KnowledgeBase-AI.git
+cd KnowledgeBase-AI
+
+2. Create a virtual environment and activate it:
 python -m venv venv
-       venv\Scripts\activate
-   Linux/Mac:
-       python3 -m venv venv
-       source venv/bin/activate
+# Windows
+venv\\Scripts\\activate
+# Linux/Mac
+source venv/bin/activate
 
-3. Install required packages:
+3. Install dependencies:
+pip install -r requirements.txt
 
-   pip install -r requirements.txt
+4. Create .env file (copy from .env.example) and add your API key:
+GEMINI_API_KEY=your_api_key_here
 
-4. Create a .env file in the project root with your Gemini API key:
+5. Run the Flask app:
+python app.py
 
-   GEMINI_API_KEY="your_google_gemini_api_key_here"
+6. Open in browser: http://127.0.0.1:5000
 
-5. Run the Flask server:
+---
 
-   python app.py
+## 📂 Folder Structure
+KnowledgeBase-AI/
+├── app.py
+├── templates/
+│   └── index.html
+├── static/       # CSS, JS, images
+├── requirements.txt
+├── .env.example
+├── README.md
 
-6. Open your browser and visit:
-   http://127.0.0.1:5000
+---
 
-Supported File Types:
-- PDF (.pdf)
-- CSV (.csv)
-- Excel (.xlsx, .xls)
-- PowerPoint (.pptx, .ppt) — requires python-pptx
+## 📽️ Demo
+(Add your demo video or GIF link here)
 
-Notes:
-- Ensure the index.html file is in the same folder as app.py or inside a "templates" folder.
-- For PowerPoint support, install python-pptx:
-   pip install python-pptx
+---
+
+## 📜 License
+Open source under MIT License." > README.md
